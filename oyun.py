@@ -26,10 +26,12 @@ DUSME_HIZI = 3         # elmalar oyunun başında ne kadar hızlı düşecek
 
 
 # ---------- OYUNDAKİ ŞEYLER ----------
-# Rect bir dikdörtgen demek: Rect(soldan, yukarıdan, genişlik, yükseklik)
+# Actor, oyundaki resimli bir nesne demek. Resmini "images" klasöründe
+# kendi adıyla arar: Actor("sepet") → images/sepet.png
+# Actor'ün x ve y'si resmin ORTASIDIR. Kenarları da var: left, right, top, bottom.
 # Dikkat: ekranda aşağı indikçe sayılar BÜYÜR. En üst 0, en alt 500.
 
-sepet = Rect(250, 450, 100, 20)  # sepet ekranın altında duruyor
+sepet = Actor("sepet", midbottom=(WIDTH / 2, HEIGHT))  # sepet en altta, ortada duruyor
 elmalar = []         # ekrandaki bütün elmaları tutan liste (başta boş)
 puan = 0             # kaç elma yakaladın
 canlar = 3           # kaç elma daha kaçırabilirsin
@@ -41,9 +43,9 @@ oyun_bitti = False   # oyun bitti mi? Başta "hayır" (False)
 
 def yeni_elma():
     # Pencerenin hemen üstünde, rastgele bir yerde yeni bir elma yap
-    x = random.randint(0, WIDTH - 20)  # 20 çıkarıyoruz ki elma sağdan taşmasın
-    elma = Rect(x, -20, 20, 20)        # -20: elma ekranın biraz üstünden gelsin
-    elmalar.append(elma)               # yeni elmayı listeye ekle
+    x = random.randint(20, WIDTH - 20)  # kenarlarda 20 boşluk: elma pencereden taşmasın
+    elma = Actor("elma", (x, -20))      # -20: elma ekranın biraz üstünden gelsin
+    elmalar.append(elma)                # yeni elmayı listeye ekle
 
 
 # ---------- YENİ OYUN ----------
@@ -55,7 +57,7 @@ def yeni_oyun():
     canlar = 3
     oyun_bitti = False
     elmalar.clear()  # listedeki bütün elmaları sil
-    sepet.x = 250    # sepeti ortaya geri koy
+    sepet.x = WIDTH / 2  # sepeti ortaya geri koy
 
 
 # ---------- EKRANI ÇİZ ----------
@@ -63,26 +65,27 @@ def yeni_oyun():
 # Renkler (kırmızı, yeşil, mavi) karışımıdır; her biri 0 ile 255 arasında.
 
 def draw():
-    screen.fill((135, 206, 235))                   # her yeri gökyüzü mavisine boya
-    screen.draw.filled_rect(sepet, (139, 69, 19))  # kahverengi sepeti çiz
+    screen.fill((135, 206, 235))  # her yeri gökyüzü mavisine boya
+    sepet.draw()                  # sepetin resmini çiz
 
     for elma in elmalar:  # listedeki her elma için...
-        screen.draw.filled_circle(elma.center, 10, (220, 20, 60))  # ...kırmızı bir daire çiz
+        elma.draw()       # ...elmanın resmini çiz
 
     # Sol üste puanı, sağ üste kalan canları yaz
     screen.draw.text(f"Puan: {puan}", topleft=(10, 10), fontsize=32, color="white")
     screen.draw.text(f"Can: {canlar}", topright=(WIDTH - 10, 10), fontsize=32, color="white")
 
-    # Oyun bittiyse ekranın ortasına büyük harflerle yaz
+    # Oyun bittiyse Newton'u göster ve ekranın ortasına büyük harflerle yaz
     if oyun_bitti:
         orta = WIDTH / 2
-        screen.draw.text("OYUN BİTTİ", center=(orta, 170), fontsize=72, color="white")
+        screen.blit("newton", (orta - 60, 45))  # images/newton.png, 120 nokta genişliğinde
+        screen.draw.text("OYUN BİTTİ", center=(orta, 205), fontsize=72, color="white")
         screen.draw.text("BONK! Newton yerçekimini keşfetti.",
-                         center=(orta, 225), fontsize=30, color="white")
+                         center=(orta, 255), fontsize=30, color="white")
         screen.draw.text(f"Puan: {puan}    En yüksek: {en_yuksek}",
-                         center=(orta, 275), fontsize=36, color="white")
+                         center=(orta, 300), fontsize=36, color="white")
         screen.draw.text("Yeniden başlamak için BOŞLUK tuşuna bas",
-                         center=(orta, 325), fontsize=28, color="white")
+                         center=(orta, 345), fontsize=28, color="white")
 
 
 # ---------- HER ŞEYİ HAREKET ETTİR ----------
