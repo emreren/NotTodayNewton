@@ -8,6 +8,7 @@ Python ve [PyGame Zero](https://pygame-zero.readthedocs.io/) ile yazılmış kü
 
 Çocuklara Python'u oyun yaparak öğretmek için hazırladığım örnek bir proje:
 kod kısa (tek dosya) ve her bölümü sade Türkçe açıklamalarla anlatılıyor.
+İngilizce sürümü de var: [`game.py`](game.py) *(English version: [see below](#english))*.
 
 <p>
   <img src="screenshots/gameplay.png" alt="Oyun ekranı: düşen elmalar ve sepet" width="380">
@@ -27,7 +28,8 @@ Python 3 ve PyGame Zero gerekir:
 
 ```bash
 pip install pgzero
-pgzrun oyun.py
+pgzrun oyun.py    # Türkçe sürüm
+pgzrun game.py    # İngilizce sürüm
 ```
 
 Debian/Ubuntu'da `pip` yerine `sudo apt install python3-pgzero` da olur.
@@ -55,13 +57,33 @@ PyGame Zero bu isimleri bulur ve onları kendisi çağırır (`draw` ile `update
 4. **Altın elma:** Bazen sarı bir elma düşsün ve yakalayınca 5 puan versin.
    İpucu: `yeni_elma` içinde `random.randint(1, 10) == 1` ise `Actor("altin_elma")` yap ve ayrı bir `altin_elmalar` listesine ekle.
 
+## English
+
+Newton is sitting under an apple tree. If an apple lands on his head, he will discover gravity. Not today!
+Catch the falling apples with your basket and keep the discovery waiting one more day.
+A tiny game made with Python and Pygame Zero to teach kids coding.
+
+- Move the basket with the **← →** arrow keys. Every apple you catch is **1 point**.
+- Miss **3 apples** and *BONK!* Newton discovers gravity. Press **SPACE** to play again.
+- Every 5 points the apples fall a little faster.
+
+```bash
+pip install pgzero
+pgzrun game.py
+```
+
+[`game.py`](game.py) is the English version of [`oyun.py`](oyun.py): same game, with English names and
+kid-friendly English comments. It uses variables, a list, a `for` loop, `if`/`elif`, functions and Actors.
+Code: MIT. Apple and basket images: Twemoji (CC-BY 4.0); Newton portrait: Godfrey Kneller, 1689 (public domain).
+Details in the section below.
+
 ## Lisans
 
 Kod [MIT](LICENSE) lisanslı: kopyala, değiştir, derste kullan, kendi oyununa dönüştür.
 
 Görseller kendi lisanslarıyla kullanıldı:
 
-- **Elma ve sepet** (`images/elma.png`, `images/sepet.png`): [Twemoji](https://github.com/jdecked/twemoji),
+- **Elma ve sepet** (`images/elma.png`, `images/sepet.png`, İngilizce sürüm için `apple.png`, `basket.png`): [Twemoji](https://github.com/jdecked/twemoji),
   © Twitter, Inc. ve katkıda bulunanlar, [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
   Kırpılıp yeniden boyutlandırıldı.
 - **Newton portresi** (`images/newton.png`): Godfrey Kneller, 1689,
