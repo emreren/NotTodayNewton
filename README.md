@@ -17,10 +17,11 @@ kod kısa (tek dosya) ve her bölümü sade Türkçe açıklamalarla anlatılıy
 
 ## Nasıl oynanır?
 
-- **← →** ok tuşlarıyla sepeti sağa sola götür.
+- **← →** ok tuşlarına her basışta sepet bir kare sola ya da sağa gider.
 - Yakaladığın her elma **1 puan**.
 - **3 elma** kaçırırsan *BONK!* Newton yerçekimini keşfeder ve oyun biter. **BOŞLUK** tuşuyla yeniden başlarsın.
-- Her 5 puanda elmalar biraz daha hızlı düşer. Yerçekimi şakaya gelmez.
+- Elmalar yarım saniyede bir, bir kare iner; her 5 puanda daha sık iner. Yerçekimi şakaya gelmez.
+- Arka plandaki numaralı ızgara, bir elmanın hangi sütun ve satırda olduğunu gösterir.
 
 ## Çalıştırma
 
@@ -40,7 +41,7 @@ Debian/Ubuntu'da `pip` yerine `sudo apt install python3-pgzero` da olur.
 |---|---|
 | Değişken | `puan`, `canlar`, `oyun_bitti` oyunun o anki durumunu tutar |
 | Liste | `elmalar`: yeni elma `append` ile eklenir, yakalanan ya da düşen `remove` ile çıkarılır |
-| Döngü | `for elma in elmalar[:]` ekrandaki her elmayı tek tek aşağı indirir |
+| Döngü | `for elma in elmalar[:]` ekrandaki her elmayı tek tek bir kare indirir; `izgara_ciz` içindeki iki döngü 12 sütunu ve 10 satırı çizer |
 | Koşul | `if sepet.colliderect(elma)` elma sepete değdi mi? `elif elma.top > HEIGHT` yere mi düştü? |
 | Fonksiyon | `yeni_elma` her saniye yeni bir elma yapar, `yeni_oyun` her şeyi sıfırlar |
 | Actor (resimli nesne) | `Actor("elma")` resmini `images/elma.png` dosyasından alır, `elma.draw()` ile çizilir |
@@ -51,10 +52,11 @@ PyGame Zero bu isimleri bulur ve onları kendisi çağırır (`draw` ile `update
 
 ## Kendin dene
 
-1. `HIZ = 12` yap. Sepet nasıl değişti?
-2. Elmanın resmini değiştir: kendi çizdiğin bir resmi `images/elma.png` adıyla kaydet ve oyunu yeniden çalıştır.
-3. Arka planın rengini değiştir. İpucu: renkler (kırmızı, yeşil, mavi) karışımıdır; gece için `(20, 24, 60)` dene.
-4. **Altın elma:** Bazen sarı bir elma düşsün ve yakalayınca 5 puan versin.
+1. `BEKLEME = 60` yap. Elmalar ne sıklıkla iniyor? (60 adım = 1 saniye) Sonra `ELMA_ARALIGI = 1` dene: her saniye yeni elma gelince yetişebiliyor musun?
+2. Bir elmanın `y`'si 375 ise kaçıncı satırdadır? İpucu: `375 // 50 + 1`. Oyunda ızgaraya bakıp kontrol et.
+3. Elmanın resmini değiştir: kendi çizdiğin bir resmi `images/elma.png` adıyla kaydet ve oyunu yeniden çalıştır.
+4. Arka planın rengini değiştir. İpucu: renkler (kırmızı, yeşil, mavi) karışımıdır; gece için `(20, 24, 60)` dene.
+5. **Altın elma:** Bazen sarı bir elma düşsün ve yakalayınca 5 puan versin.
    İpucu: `yeni_elma` içinde `random.randint(1, 10) == 1` ise `Actor("altin_elma")` yap ve ayrı bir `altin_elmalar` listesine ekle.
 
 ## English
@@ -63,9 +65,10 @@ Newton is sitting under an apple tree. If an apple lands on his head, he will di
 Catch the falling apples with your basket and keep the discovery waiting one more day.
 A tiny game made with Python and Pygame Zero to teach kids coding.
 
-- Move the basket with the **← →** arrow keys. Every apple you catch is **1 point**.
+- Each **← →** arrow key press moves the basket one square. Every apple you catch is **1 point**.
 - Miss **3 apples** and *BONK!* Newton discovers gravity. Press **SPACE** to play again.
-- Every 5 points the apples fall a little faster.
+- Apples fall one square every half second, and more often every 5 points.
+- The numbered grid in the background shows which column and row an apple is in.
 
 ```bash
 pip install pgzero
