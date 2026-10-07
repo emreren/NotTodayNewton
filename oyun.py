@@ -68,7 +68,7 @@ def yeni_oyun():
 # ---------- NUMARALI IZGARA ----------
 # Elmanın ekranda nerede olduğunu görmek için arka plana bir harita çizer.
 # Her kare 50 nokta: 3. sütun x'in 100 ile 150 arası, 5. satır y'nin 200 ile 250 arası.
-# Satır numaraları solda, sütun numaraları altta (satranç tahtası gibi).
+# Satır numaraları solda ve tıpkı y gibi yukarıdan aşağı büyür; sütun numaraları altta.
 
 def izgara_ciz():
     cizgi_rengi = (205, 235, 250)  # gökyüzünden açık bir mavi

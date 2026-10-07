@@ -68,7 +68,7 @@ def new_game():
 # ---------- NUMBERED GRID ----------
 # Draws a map in the background so you can see where an apple is on the screen.
 # Each square is 50 dots: column 3 is x from 100 to 150, row 5 is y from 200 to 250.
-# Row numbers are on the left, column numbers at the bottom (like a chessboard).
+# Row numbers are on the left and grow downward, just like y; column numbers are at the bottom.
 
 def draw_grid():
     line_color = (205, 235, 250)  # a light blue, a little brighter than the sky
