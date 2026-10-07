@@ -5,7 +5,7 @@
 #  Ok tuşlarına her basışta sepetin bir kare sola ya da sağa gider.
 #  Elmaları yakala! 3 elma kaçırırsan Newton yerçekimini keşfeder ve oyun biter.
 #
-#  Çalıştırmak için:  pgzrun oyun.py  ya da  python3 oyun.py  (VSCodium'da ▶ de olur)
+#  Çalıştırmak için terminalde:  pgzrun oyun.py  ya da  python3 oyun.py  ( ▶ tuşu da olur)
 #
 #  draw, update ve on_key_down fonksiyonlarını biz çağırmıyoruz.
 #  PyGame Zero bu isimleri arar ve onları kendisi çağırır.
