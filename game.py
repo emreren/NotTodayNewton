@@ -5,13 +5,14 @@
 #  Each time you press an arrow key, your basket moves one square left or right.
 #  Catch the apples! Miss 3 apples and Newton discovers gravity: game over.
 #
-#  To play, run this command in the same folder:  pgzrun game.py
+#  To play:  pgzrun game.py  or  python3 game.py  (the ▶ button in your editor works too)
 #
 #  We never call draw, update or on_key_down ourselves.
 #  Pygame Zero looks for these names and calls them for us.
 #  That is why they must be spelled exactly like this.
 # ==================================================
 
+import pgzrun  # sets up Pygame Zero: names like Actor, screen and keyboard come from here
 import random  # a ready-made tool for picking random numbers
 
 
@@ -177,3 +178,5 @@ def on_key_down(key):
 
 # Run the new_apple function every APPLE_EVERY seconds (like setting an alarm)
 clock.schedule_interval(new_apple, APPLE_EVERY)
+
+pgzrun.go()  # start the game

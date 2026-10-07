@@ -5,13 +5,14 @@
 #  Ok tuşlarına her basışta sepetin bir kare sola ya da sağa gider.
 #  Elmaları yakala! 3 elma kaçırırsan Newton yerçekimini keşfeder ve oyun biter.
 #
-#  Çalıştırmak için aynı dizinde bu komutu çalıştır:  pgzrun oyun.py
+#  Çalıştırmak için:  pgzrun oyun.py  ya da  python3 oyun.py  (VSCodium'da ▶ de olur)
 #
 #  draw, update ve on_key_down fonksiyonlarını biz çağırmıyoruz.
 #  PyGame Zero bu isimleri arar ve onları kendisi çağırır.
 #  Bu yüzden adları İngilizce ve tam olarak böyle yazılmalı.
 # ==================================================
 
+import pgzrun  # PyGame Zero'yu hazırlar: Actor, screen, keyboard gibi adlar bununla gelir
 import random  # rastgele sayı seçmemizi sağlayan hazır bir araç
 
 
@@ -176,3 +177,5 @@ def on_key_down(key):
 
 # Her ELMA_ARALIGI saniyede bir yeni_elma fonksiyonunu çalıştır (alarm kurmak gibi)
 clock.schedule_interval(yeni_elma, ELMA_ARALIGI)
+
+pgzrun.go()  # oyunu başlat
