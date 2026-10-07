@@ -24,7 +24,7 @@ WIDTH = 600            # pencerenin genişliği: 12 kare
 HEIGHT = 500           # pencerenin yüksekliği: 10 kare
 KARE = 50              # ızgaradaki her kare kaç nokta (elmalar ve sepet kare kare gider)
 BEKLEME = 30           # elmalar kaç adımda bir kare iner (saniyede 60 adım: 30 = yarım saniye)
-ELMA_ARALIGI = 3       # kaç saniyede bir yeni elma düşsün
+ELMA_ARALIGI = 180     # kaç adımda bir yeni elma düşsün (180 adım = 3 saniye)
 IZGARA = True          # numaralı ızgarayı göster (False yaparsan gizlenir)
 
 
@@ -41,6 +41,7 @@ canlar = 3           # kaç elma daha kaçırabilirsin
 en_yuksek = 0        # şimdiye kadarki en iyi puanın
 oyun_bitti = False   # oyun bitti mi? Başta "hayır" (False)
 sayac = 0            # elmaları indirmeden önce kaç adım beklediğimizi sayar
+elma_sayaci = 0      # yeni elma yapmadan önce kaç adım beklediğimizi sayar
 
 
 # ---------- YENİ ELMA ----------
@@ -122,11 +123,17 @@ def draw():
 # Her çağrılmasına bir "adım" diyelim.
 
 def update():
-    global puan, canlar, en_yuksek, oyun_bitti, sayac  # bunları değiştireceğiz
+    global puan, canlar, en_yuksek, oyun_bitti, sayac, elma_sayaci  # bunları değiştireceğiz
 
     # Oyun bittiyse burada dur, hiçbir şeyi hareket ettirme
     if oyun_bitti:
         return
+
+    # Her ELMA_ARALIGI adımda bir yeni elma yap (yeni_elma'yı burada biz çağırıyoruz)
+    elma_sayaci += 1
+    if elma_sayaci >= ELMA_ARALIGI:
+        elma_sayaci = 0
+        yeni_elma()
 
     # Elmaları her adımda değil, birkaç adımda bir indiriyoruz; böylece kare kare iniyorlar.
     # Her 5 puanda bekleme kısalır, elmalar daha sık iner.
@@ -174,8 +181,5 @@ def on_key_down(key):
     if key == keys.RIGHT and sepet.right < WIDTH:
         sepet.x += KARE  # x büyürse sepet sağa gider
 
-
-# Her ELMA_ARALIGI saniyede bir yeni_elma fonksiyonunu çalıştır (alarm kurmak gibi)
-clock.schedule_interval(yeni_elma, ELMA_ARALIGI)
 
 pgzrun.go()  # oyunu başlat

@@ -24,7 +24,7 @@ WIDTH = 600                  # width of the window: 12 squares
 HEIGHT = 500                 # height of the window: 10 squares
 CELL = 50                    # dots per square (apples and the basket move square by square)
 WAIT = 30                    # steps between two apple moves (60 steps = 1 second)
-APPLE_EVERY = 3              # a new apple falls every this many seconds
+APPLE_EVERY = 180            # a new apple every this many steps (180 steps = 3 seconds)
 GRID = True                  # show the numbered grid (set to False to hide it)
 
 
@@ -41,6 +41,7 @@ lives = 3            # how many more apples you can miss
 best_score = 0       # your best score so far
 game_over = False    # is the game over? "No" (False) at the start
 counter = 0          # counts the steps we wait before the apples fall
+apple_counter = 0    # counts the steps we wait before making a new apple
 
 
 # ---------- NEW APPLE ----------
@@ -123,11 +124,17 @@ def draw():
 # Let's call each time it runs a "step".
 
 def update():
-    global score, lives, best_score, game_over, counter  # we are going to change these
+    global score, lives, best_score, game_over, counter, apple_counter  # we change these
 
     # If the game is over, stop here and don't move anything
     if game_over:
         return
+
+    # Make a new apple every APPLE_EVERY steps (here WE call new_apple ourselves)
+    apple_counter += 1
+    if apple_counter >= APPLE_EVERY:
+        apple_counter = 0
+        new_apple()
 
     # We don't move the apples every step, only every few steps, so they fall square by square.
     # Every 5 points the wait gets shorter and the apples fall more often.
@@ -175,8 +182,5 @@ def on_key_down(key):
     if key == keys.RIGHT and basket.right < WIDTH:
         basket.x += CELL  # bigger x means the basket goes right
 
-
-# Run the new_apple function every APPLE_EVERY seconds (like setting an alarm)
-clock.schedule_interval(new_apple, APPLE_EVERY)
 
 pgzrun.go()  # start the game
