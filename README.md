@@ -10,8 +10,8 @@ Python ve [PyGame Zero](https://pygame-zero.readthedocs.io/) ile yazılmış kü
 kod kısa (tek dosya) ve her bölümü sade Türkçe açıklamalarla anlatılıyor.
 
 <p>
-  <img src="gorseller/oyun.png" alt="Oyun ekranı: düşen elmalar ve sepet" width="380">
-  <img src="gorseller/oyun-bitti.png" alt="Oyun bitti ekranı" width="380">
+  <img src="screenshots/gameplay.png" alt="Oyun ekranı: düşen elmalar ve sepet" width="380">
+  <img src="screenshots/game-over.png" alt="Oyun bitti ekranı" width="380">
 </p>
 
 ## Nasıl oynanır?
