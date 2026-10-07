@@ -19,7 +19,7 @@ kod kısa (tek dosya) ve her bölümü sade Türkçe açıklamalarla anlatılıy
 
 - **← →** ok tuşlarına her basışta sepet bir kare sola ya da sağa gider.
 - Yakaladığın her elma **1 puan**.
-- **3 elma** kaçırırsan *BONK!* Newton yerçekimini keşfeder ve oyun biter. **BOŞLUK** tuşuyla yeniden başlarsın.
+- **3 elma** kaçırırsan *BONK!* Newton yerçekimini keşfeder ve oyun biter. Yeniden oynamak için oyunu tekrar başlat.
 - Elmalar yarım saniyede bir, bir kare iner; her 5 puanda daha sık iner. Yerçekimi şakaya gelmez.
 - Arka plandaki numaralı ızgara, bir elmanın hangi sütun ve satırda olduğunu gösterir.
 
@@ -43,7 +43,7 @@ Debian/Ubuntu'da `pip` yerine `sudo apt install python3-pgzero` da olur.
 | Liste | `elmalar`: yeni elma `append` ile eklenir, yakalanan ya da düşen `remove` ile çıkarılır |
 | Döngü | `for elma in elmalar[:]` ekrandaki her elmayı tek tek bir kare indirir; `izgara_ciz` içindeki iki döngü 12 sütunu ve 10 satırı çizer |
 | Koşul | `if sepet.colliderect(elma)` elma sepete değdi mi? `elif elma.top > HEIGHT` yere mi düştü? |
-| Fonksiyon | `yeni_elma` 3 saniyede bir yeni elma yapar (`update` içinden çağrılır), `yeni_oyun` her şeyi sıfırlar |
+| Fonksiyon | `yeni_elma` 3 saniyede bir yeni elma yapar (`update` içinden çağrılır), `izgara_ciz` numaralı kareleri çizer |
 | Actor (resimli nesne) | `Actor("elma")` resmini `images/elma.png` dosyasından alır, `elma.draw()` ile çizilir |
 
 `draw`, `update` ve `on_key_down` fonksiyonlarını kodun içinde hiç çağırmıyoruz:
@@ -66,7 +66,7 @@ Catch the falling apples with your basket and keep the discovery waiting one mor
 A tiny game made with Python and Pygame Zero to teach kids coding.
 
 - Each **← →** arrow key press moves the basket one square. Every apple you catch is **1 point**.
-- Miss **3 apples** and *BONK!* Newton discovers gravity. Press **SPACE** to play again.
+- Miss **3 apples** and *BONK!* Newton discovers gravity and the game is over. Start it again to play again.
 - Apples fall one square every half second, and more often every 5 points.
 - The numbered grid in the background shows which column and row an apple is in.
 
