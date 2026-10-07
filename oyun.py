@@ -1,8 +1,9 @@
 # ==================================================
-#  ELMA YAKALA
-#  Gökyüzünden elmalar düşüyor. Sepetini ok tuşlarıyla
-#  sağa sola götür ve elmaları yakala!
-#  3 elma kaçırırsan oyun biter.
+#  NOT TODAY, NEWTON  (Bugün olmaz, Newton!)
+#  Newton bir elma ağacının altında oturuyor. Elmalardan biri
+#  kafasına düşerse yerçekimini keşfedecek. Bugün olmaz!
+#  Sepetini ok tuşlarıyla sağa sola götür ve elmaları yakala.
+#  3 elma kaçırırsan Newton yerçekimini keşfeder ve oyun biter.
 #
 #  Çalıştırmak için aynı dizinde bu komutu çalıştır:  pgzrun oyun.py
 #
@@ -17,7 +18,7 @@ import random  # rastgele sayı seçmemizi sağlayan hazır bir araç
 # ---------- AYARLAR ----------
 # Bu sayıları değiştirerek oyunu kolaylaştırabilir ya da zorlaştırabilirsin.
 
-TITLE = "Elma Yakala"  # pencerenin üstünde yazan isim
+TITLE = "Not Today, Newton"  # pencerenin üstünde yazan isim
 WIDTH = 600            # pencerenin genişliği
 HEIGHT = 500           # pencerenin yüksekliği
 HIZ = 6                # sepet her adımda kaç nokta kayacak
@@ -75,11 +76,13 @@ def draw():
     # Oyun bittiyse ekranın ortasına büyük harflerle yaz
     if oyun_bitti:
         orta = WIDTH / 2
-        screen.draw.text("OYUN BİTTİ", center=(orta, 190), fontsize=72, color="white")
+        screen.draw.text("OYUN BİTTİ", center=(orta, 170), fontsize=72, color="white")
+        screen.draw.text("BONK! Newton yerçekimini keşfetti.",
+                         center=(orta, 225), fontsize=30, color="white")
         screen.draw.text(f"Puan: {puan}    En yüksek: {en_yuksek}",
-                         center=(orta, 250), fontsize=36, color="white")
+                         center=(orta, 275), fontsize=36, color="white")
         screen.draw.text("Yeniden başlamak için BOŞLUK tuşuna bas",
-                         center=(orta, 300), fontsize=28, color="white")
+                         center=(orta, 325), fontsize=28, color="white")
 
 
 # ---------- HER ŞEYİ HAREKET ETTİR ----------
